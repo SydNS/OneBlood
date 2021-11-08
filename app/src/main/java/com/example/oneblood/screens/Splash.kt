@@ -25,7 +25,7 @@ fun Splash(){
         ,contentScale = ContentScale.Inside,
             modifier = Modifier.height(200.dp).width(200.dp)
                 .align(alignment = Alignment.Center)
-                .graphicsLayer(alpha = 1F))
+                .graphicsLayer(alpha = 5F))
 
             
         }
