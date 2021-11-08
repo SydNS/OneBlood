@@ -3,11 +3,19 @@ package com.example.oneblood
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.oneblood.scre.Splash
 import com.example.oneblood.ui.theme.OneBloodTheme
 
@@ -18,7 +26,7 @@ class MainActivity : ComponentActivity() {
             OneBloodTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting()
+                    Navigation()
                 }
             }
         }
@@ -34,6 +42,27 @@ fun Greeting() {
 @Composable
 fun DefaultPreview() {
     OneBloodTheme {
-        Splash()
+
+    }
+}
+
+@Composable
+fun Navigation() {
+
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "splash") {
+        composable("splash") { Splash(navController) }
+        composable("Login") { LoginScreen() }
+        /*...*/
+    }
+
+
+}
+
+@Preview
+@Composable
+fun LoginScreen() {
+    Box(modifier = Modifier.fillMaxSize().background(color = Color.Magenta)) {
+
     }
 }
