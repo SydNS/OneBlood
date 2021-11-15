@@ -52,9 +52,10 @@ fun LoginScreen() {
 
     ) {
 
-        LoginContent()
-
-
+Column {
+LoginContent()
+    UsefulLinks()
+}
 
 
     }
@@ -66,9 +67,8 @@ fun LoginScreen() {
 fun LoginContent() {
     Column(
         modifier = Modifier
-            .fillMaxSize()
+            .fillMaxWidth(1f)
             .wrapContentHeight(align = Alignment.CenterVertically)
-            .padding(20.dp,50.dp)
             .background(
                 color = Color.Red, shape = RoundedCornerShape(
                     250.dp,
@@ -160,7 +160,10 @@ fun SignIn() {
 @Preview
 @Composable
 fun UsefulLinks() {
-    Column(modifier = Modifier.wrapContentHeight()) {
+    Column(modifier = Modifier
+        .wrapContentHeight()
+        .padding(20.dp, 10.dp)
+    ) {
         Registerlink()
         SocialRegister()
     }
@@ -182,12 +185,13 @@ fun Registerlink() {
 @Preview
 @Composable
 fun SocialRegister() {
-    Row (modifier = Modifier.padding(20.dp,0.dp)){
+    Row(modifier = Modifier.padding(10.dp, 0.dp)) {
         GoogleSignUp()
         FacebookSignUp()
 
     }
 }
+
 @Preview
 @Composable
 fun FacebookSignUp() {
@@ -196,22 +200,26 @@ fun FacebookSignUp() {
     Button(onClick = {}, modifier = Modifier.padding(8.dp)) {
         Row {
             Icon(
-                imageVector = Icons.Filled.Phone,
+                imageVector = Icons.Default.Phone,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 4.dp)
             )
-            Text(text = "Phonenumber")
+            Text(text = "Phone")
         }
     }
 
 }
+
 @Preview
 @Composable
 fun GoogleSignUp() {
     // Icon Button
     // Icon on the Right of text
-    Button(onClick = {}, modifier = Modifier.padding(8.dp)) {
-        Text(text = "Gmail Sign In")
+    Button(onClick = {}, modifier = Modifier.padding(8.dp)
+    ,colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Red
+    )) {
+        Text(text = "Gmail",color = Color.White)
         Icon(
             imageVector = Icons.Default.Email,
             contentDescription = null,
