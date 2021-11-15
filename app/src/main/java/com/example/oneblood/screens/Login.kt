@@ -56,6 +56,7 @@ fun LoginScreen() {
 
 
 
+
     }
 
 
@@ -181,7 +182,7 @@ fun Registerlink() {
 @Preview
 @Composable
 fun SocialRegister() {
-    Row {
+    Row (modifier = Modifier.padding(20.dp,0.dp)){
         GoogleSignUp()
         FacebookSignUp()
 
