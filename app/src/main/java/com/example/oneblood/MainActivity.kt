@@ -25,6 +25,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.oneblood.scre.Splash
+import com.example.oneblood.screens.LoginScreen
 import com.example.oneblood.ui.theme.OneBloodTheme
 
 class MainActivity : ComponentActivity() {
@@ -70,16 +71,3 @@ fun Navigation() {
 }
 
 
-@ExperimentalAnimationApi
-@Preview
-@Composable
-fun LoginScreen() {
-    var visible = remember{ mutableStateOf(true)}
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color.White)
-
-    ) {
-
-    }
-}
