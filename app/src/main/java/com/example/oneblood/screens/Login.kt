@@ -67,8 +67,10 @@ fun LoginScreen() {
                 value = "",
                 placeholder = { Text(text = "Email Address") },
                 onValueChange = {},
-                modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
-//                label = { Text(text = "Email Address") },
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .padding(0.dp, 5.dp),
+                label = { Text(text = "Email Address") },
 
                 singleLine = true
             )
@@ -76,8 +78,10 @@ fun LoginScreen() {
                 value = "",
                 placeholder = { Text(text = "Password") },
                 onValueChange = {},
-                modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
-//                label = { Text(text = "Email Address") },
+                modifier = Modifier
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .padding(0.dp, 5.dp),
+                label = { Text(text = "Password") },
 
                 singleLine = true
             )
