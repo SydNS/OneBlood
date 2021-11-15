@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">OneBlood</string>
     <string name="login">Login</string>
-    <string name="registerLink">Register</string>
+    <string name="registerLink">Have No Account? Register</string>
 </resources>
