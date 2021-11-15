@@ -27,6 +27,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -149,5 +151,14 @@ fun SignIn() {
 @Preview
 @Composable
 fun UsefulLinks(){
+    
+
+}
+@Preview
+@Composable
+fun Registerlink(){
+    Text(text = stringResource(id = R.string.registerLink),
+        fontStyle = FontStyle(R.font.cavdreams))
+
 
 }
