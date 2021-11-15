@@ -4,6 +4,7 @@ import android.graphics.Paint
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -63,10 +64,20 @@ fun LoginScreen() {
             )
 
             OutlinedTextField(
-                value = "Email Address",
+                value = "",
+                placeholder = { Text(text = "Email Address") },
                 onValueChange = {},
                 modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
-                label = { Text(text = "Email Address") },
+//                label = { Text(text = "Email Address") },
+
+                singleLine = true
+            )
+            OutlinedTextField(
+                value = "",
+                placeholder = { Text(text = "Password") },
+                onValueChange = {},
+                modifier = Modifier.align(alignment = Alignment.CenterHorizontally),
+//                label = { Text(text = "Email Address") },
 
                 singleLine = true
             )
