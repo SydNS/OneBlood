@@ -163,6 +163,7 @@ fun UsefulLinks() {
     Column(modifier = Modifier
         .wrapContentHeight()
         .padding(20.dp, 10.dp)
+        .wrapContentWidth()
     ) {
         Registerlink()
         SocialRegister()
@@ -173,19 +174,20 @@ fun UsefulLinks() {
 @Preview
 @Composable
 fun Registerlink() {
-    Text(
+    Text(modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally),
         text = stringResource(id = R.string.registerLink),
         fontStyle = FontStyle(R.font.cavdreams),
         textAlign = TextAlign.Center
     )
-    Divider(color = Color.Blue, thickness = 2.dp)
+    Divider(color = Color.Gray, thickness = 1.dp)
 
 }
 
 @Preview
 @Composable
 fun SocialRegister() {
-    Row(modifier = Modifier.padding(10.dp, 0.dp)) {
+    Row(modifier = Modifier.padding(10.dp, 0.dp)
+        .wrapContentSize(align = Alignment.Center)) {
         GoogleSignUp()
         FacebookSignUp()
 
