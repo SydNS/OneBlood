@@ -2,6 +2,7 @@ package com.example.oneblood.screens
 
 import android.graphics.Paint
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -9,10 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,7 +22,11 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
@@ -46,8 +48,14 @@ fun LoginScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .wrapContentHeight(align = Alignment.CenterVertically)
                 .padding(20.dp, 40.dp)
-                .background(color = Color.Red, shape = RoundedCornerShape(0.dp, 0.dp, 90.dp, 90.dp))
+                .background(
+                    color = Color.Red, shape = RoundedCornerShape(
+                        250.dp,
+                        0.dp, 250.dp, 250.dp
+                    )
+                )
 
         ) {
 
@@ -65,7 +73,13 @@ fun LoginScreen() {
 
             OutlinedTextField(
                 value = "",
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Red,
+                    focusedLabelColor = Color.Red,
+                    cursorColor = Color.Red
+                ),
                 placeholder = { Text(text = "Email Address") },
+                textStyle = TextStyle(color = Color.White),
                 onValueChange = {},
                 modifier = Modifier
                     .align(alignment = Alignment.CenterHorizontally)
@@ -76,6 +90,11 @@ fun LoginScreen() {
             )
             OutlinedTextField(
                 value = "",
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Red,
+                    focusedLabelColor = Color.Red,
+                    cursorColor = Color.Red
+                ),
                 placeholder = { Text(text = "Password") },
                 onValueChange = {},
                 modifier = Modifier
@@ -85,7 +104,28 @@ fun LoginScreen() {
 
                 singleLine = true
             )
+
+            OutlinedButton(
+                onClick = { /*TODO*/ },
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor = Color.Blue,
+                ),
+                modifier = Modifier
+                    .padding(0.dp, 10.dp)
+                    .align(alignment = Alignment.CenterHorizontally)
+                    .width(280.dp)
+                    .height(50.dp),
+
+                ) {
+                Text(
+                    text = stringResource(id = R.string.login), color = Color.White
+                )
+
+            }
+
         }
+
+
 
 
     }
@@ -99,8 +139,15 @@ fun SignIn() {
     Button(
         onClick = {}, modifier = Modifier
             .padding(top = 1.dp)
-            .requiredWidth(177.dp)
+            .requiredWidth(200.dp)
     ) {
         Text(text = "Sign In")
     }
+}
+
+
+@Preview
+@Composable
+fun UsefulLinks(){
+
 }
