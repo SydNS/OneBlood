@@ -1,16 +1,18 @@
 package com.example.oneblood.screens
 
 import android.graphics.Paint
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -25,7 +27,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -33,6 +37,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -131,6 +136,7 @@ fun SignupContent() {
 
 
         val textPassd2 = remember { mutableStateOf("") }
+
         OutlinedTextField(
             value = textPassd.value,
             onValueChange = { textPassd2.value = it },
@@ -154,7 +160,7 @@ fun SignupContent() {
             shape = RoundedCornerShape(10.dp),
             onClick = { /*TODO*/ },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor  = colorResource(R.color.loginbtn),
+                backgroundColor = colorResource(R.color.loginbtn),
             ),
             modifier = Modifier
                 .padding(0.dp, 10.dp)
@@ -204,18 +210,75 @@ fun LoginLinks() {
 @Composable
 fun Signinlink() {
     Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = stringResource(id = R.string.registerLink),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+
+            },
+        text = stringResource(id = R.string.loginLink),
         fontStyle = FontStyle(R.font.cavdreams),
         textAlign = TextAlign.Center,
         fontSize = 15.sp,
         fontWeight = FontWeight.Light
     )
+//    AnnotatedClickableText()
     Divider(
         modifier = Modifier.padding(15.dp, 10.dp, 15.dp, 10.dp),
         color = Color.Gray,
         thickness = 1.dp
     )
 
+}
+
+@Preview
+@Composable
+fun AnnotatedClickableText() {
+    val annotatedText = buildAnnotatedString {
+        //append your initial text
+        withStyle(
+
+            style = SpanStyle(
+                color = Color.Gray,
+                fontStyle = FontStyle(R.font.cavdreams),
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Light
+            )
+        ) {
+            append(
+                "Already Have an account ?"
+            )
+
+        }
+
+        //Start of the pushing annotation which you want to color and make them clickable later
+        pushStringAnnotation(
+            tag = "SignUp",// provide tag which will then be provided when you click the text
+            annotation = "SignUp"
+        )
+        //add text with your different color/style
+        withStyle(
+            style = SpanStyle(
+                color = Color.Red,
+            )
+        ) {
+            append("Sign Up")
+        }
+        // when pop is called it means the end of annotation with current tag
+        pop()
+    }
+
+    ClickableText(
+        text = annotatedText,
+        onClick = { offset ->
+            annotatedText.getStringAnnotations(
+                tag = "SignUp",// tag which you used in the buildAnnotatedString
+                start = offset,
+                end = offset
+            )[0].let { annotation ->
+                //do your stuff when it gets clicked
+
+            }
+        }
+    )
 }
 
