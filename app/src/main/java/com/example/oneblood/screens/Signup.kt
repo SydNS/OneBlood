@@ -1,27 +1,24 @@
 package com.example.oneblood.screens
 
 import android.graphics.Paint
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
@@ -30,7 +27,9 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
@@ -38,20 +37,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.oneblood.R
-import com.example.oneblood.ui.theme.Purple500
-import com.example.oneblood.ui.theme.oneblod
-import com.example.oneblood.ui.theme.oneblod2
-import com.example.oneblood.ui.theme.onewhite
 
 @ExperimentalAnimationApi
 @Preview
 @Composable
-fun LoginScreen() {
-    var visible = remember { mutableStateOf(true) }
+fun SignupScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -60,8 +55,8 @@ fun LoginScreen() {
     ) {
 
         Column {
-            LoginContent()
-            UsefulLinks()
+            SignupContent()
+            LoginLinks()
         }
 
 
@@ -71,21 +66,15 @@ fun LoginScreen() {
 }
 
 @Composable
-fun LoginContent() {
+fun SignupContent() {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
-            .padding(1.dp, 140.dp, 1.dp, 10.dp)
+            .padding(1.dp, 100.dp, 1.dp, 10.dp)
             .wrapContentHeight(align = Alignment.CenterVertically)
             .background(
-
-                brush = Brush.verticalGradient(
-                    colors = listOf(
-                        oneblod2,oneblod
-                    ),
-                )
-//                color = colorResource(R.color.oneblood),
-                ,shape = RoundedCornerShape(
+                color = colorResource(R.color.oneblood),
+                shape = RoundedCornerShape(
                     250.dp,
                     0.dp, 250.dp, 250.dp
                 )
@@ -145,11 +134,33 @@ fun LoginContent() {
             singleLine = true
         )
 
+
+        val textPassd2 = remember { mutableStateOf("") }
+
+        OutlinedTextField(
+            value = textPassd.value,
+            onValueChange = { textPassd2.value = it },
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color.White,
+                focusedLabelColor = Color.White,
+                cursorColor = Color.White,
+                unfocusedBorderColor = Color.White,
+                unfocusedLabelColor = Color.White
+            ),
+            placeholder = { Text(text = "Confirm Password") },
+            modifier = Modifier
+                .align(alignment = Alignment.CenterHorizontally)
+                .padding(0.dp, 5.dp),
+            label = { Text(text = "Confirm Password") },
+
+            singleLine = true
+        )
+
         Button(
             shape = RoundedCornerShape(10.dp),
             onClick = { /*TODO*/ },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor  = colorResource(R.color.loginbtn),
+                backgroundColor = colorResource(R.color.loginbtn),
             ),
             modifier = Modifier
                 .padding(0.dp, 10.dp)
@@ -169,7 +180,7 @@ fun LoginContent() {
 
 @Preview
 @Composable
-fun SignIn() {
+fun SignUp() {
     Button(
         onClick = {}, modifier = Modifier
             .padding(top = 1.dp)
@@ -182,14 +193,14 @@ fun SignIn() {
 
 @Preview
 @Composable
-fun UsefulLinks() {
+fun LoginLinks() {
     Column(
         modifier = Modifier
             .wrapContentHeight()
             .padding(20.dp, 10.dp)
             .wrapContentWidth()
     ) {
-        Registerlink()
+        Signinlink()
         SocialRegister()
     }
 
@@ -197,15 +208,20 @@ fun UsefulLinks() {
 
 @Preview
 @Composable
-fun Registerlink() {
+fun Signinlink() {
     Text(
-        modifier = Modifier.fillMaxWidth(),
-        text = stringResource(id = R.string.registerLink),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+
+            },
+        text = stringResource(id = R.string.loginLink),
         fontStyle = FontStyle(R.font.cavdreams),
         textAlign = TextAlign.Center,
         fontSize = 15.sp,
         fontWeight = FontWeight.Light
     )
+//    AnnotatedClickableText()
     Divider(
         modifier = Modifier.padding(15.dp, 10.dp, 15.dp, 10.dp),
         color = Color.Gray,
@@ -216,78 +232,53 @@ fun Registerlink() {
 
 @Preview
 @Composable
-fun SocialRegister() {
-    Row(
-        modifier = Modifier
-            .padding(1.dp, 10.dp)
-            .fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
-    ) {
-        GoogleSignUp()
-        FacebookSignUp()
+fun AnnotatedClickableText() {
+    val annotatedText = buildAnnotatedString {
+        //append your initial text
+        withStyle(
 
-    }
-}
-
-@Preview
-@Composable
-fun FacebookSignUp() {
-    // Icon Button
-    // Icon on the left of text
-    Button(
-        shape = RoundedCornerShape(10.dp),
-        onClick = {}, modifier = Modifier
-            .padding(1.dp)
-            .size(120.dp, 50.dp), colors = ButtonDefaults.buttonColors(
-            backgroundColor = colorResource(id = R.color.phone),
-            contentColor = Color.White
-        )
-
-    ) {
-        Row {
-            Icon(
-                imageVector = Icons.Default.Phone,
-                contentDescription = null,
-                modifier = Modifier.padding(end = 0.dp)
-            )
-            Text(
-                text = "Phone",
-                fontSize = 20.sp,
+            style = SpanStyle(
+                color = Color.Gray,
+                fontStyle = FontStyle(R.font.cavdreams),
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Light
             )
+        ) {
+            append(
+                "Already Have an account ?"
+            )
+
         }
+
+        //Start of the pushing annotation which you want to color and make them clickable later
+        pushStringAnnotation(
+            tag = "SignUp",// provide tag which will then be provided when you click the text
+            annotation = "SignUp"
+        )
+        //add text with your different color/style
+        withStyle(
+            style = SpanStyle(
+                color = Color.Red,
+            )
+        ) {
+            append("Sign Up")
+        }
+        // when pop is called it means the end of annotation with current tag
+        pop()
     }
 
+    ClickableText(
+        text = annotatedText,
+        onClick = { offset ->
+            annotatedText.getStringAnnotations(
+                tag = "SignUp",// tag which you used in the buildAnnotatedString
+                start = offset,
+                end = offset
+            )[0].let { annotation ->
+                //do your stuff when it gets clicked
+
+            }
+        }
+    )
 }
 
-@Preview
-@Composable
-fun GoogleSignUp() {
-    // Icon Button
-    // Icon on the Right of text
-    Button(
-        shape = RoundedCornerShape(12.dp),
-        onClick = {},
-        modifier = Modifier
-            .padding(1.dp)
-            .size(120.dp, 50.dp),
-
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = colorResource(id = R.color.oneblood),
-            contentColor = Color.White
-        )
-    ) {
-        Text(
-            text = "Gmail",
-            color = Color.White,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Light
-        )
-        Icon(
-            imageVector = Icons.Default.Email,
-            contentDescription = null,
-            modifier = Modifier.padding(start = 4.dp)
-        )
-    }
-}

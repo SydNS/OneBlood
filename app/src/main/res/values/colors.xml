@@ -8,4 +8,8 @@
     <color name="black2">#37000000</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="oneblood">#cc2137</color>
+    <color name="oneblood2">#ADFE505F</color>
+    <color name="loginbtn">#4874cc</color>
+    <color name="phone">#39C33F</color>
 </resources>
