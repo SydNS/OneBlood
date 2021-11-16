@@ -73,7 +73,8 @@ fun LoginContent() {
             .padding(1.dp, 140.dp, 1.dp, 10.dp)
             .wrapContentHeight(align = Alignment.CenterVertically)
             .background(
-                color = Color.Red, shape = RoundedCornerShape(
+                color = colorResource(R.color.oneblood),
+                shape = RoundedCornerShape(
                     250.dp,
                     0.dp, 250.dp, 250.dp
                 )
@@ -99,7 +100,9 @@ fun LoginContent() {
                 focusedBorderColor = Color.White,
                 focusedLabelColor = Color.White,
                 cursorColor = Color.White,
-                unfocusedBorderColor = Color.White
+                unfocusedBorderColor = Color.White,
+                unfocusedLabelColor = Color.White
+
             ),
             placeholder = { Text(text = "Email Address") },
             textStyle = TextStyle(color = Color.White),
@@ -119,7 +122,8 @@ fun LoginContent() {
                 focusedBorderColor = Color.White,
                 focusedLabelColor = Color.White,
                 cursorColor = Color.White,
-                unfocusedBorderColor = Color.White
+                unfocusedBorderColor = Color.White,
+                unfocusedLabelColor = Color.White
             ),
             placeholder = { Text(text = "Password") },
             modifier = Modifier
@@ -130,10 +134,11 @@ fun LoginContent() {
             singleLine = true
         )
 
-        OutlinedButton(
+        Button(
+            shape = RoundedCornerShape(10.dp),
             onClick = { /*TODO*/ },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor = Color.Blue,
+                backgroundColor  = colorResource(R.color.loginbtn),
             ),
             modifier = Modifier
                 .padding(0.dp, 10.dp)
@@ -187,10 +192,14 @@ fun Registerlink() {
         text = stringResource(id = R.string.registerLink),
         fontStyle = FontStyle(R.font.cavdreams),
         textAlign = TextAlign.Center,
-        fontSize = 20.sp,
+        fontSize = 15.sp,
         fontWeight = FontWeight.Light
     )
-    Divider(color = Color.Gray, thickness = 1.dp)
+    Divider(
+        modifier = Modifier.padding(15.dp, 10.dp, 15.dp, 10.dp),
+        color = Color.Gray,
+        thickness = 1.dp
+    )
 
 }
 
@@ -216,11 +225,11 @@ fun FacebookSignUp() {
     // Icon Button
     // Icon on the left of text
     Button(
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(10.dp),
         onClick = {}, modifier = Modifier
             .padding(1.dp)
             .size(120.dp, 50.dp), colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color.Red,
+            backgroundColor = colorResource(id = R.color.phone),
             contentColor = Color.White
         )
 
@@ -229,7 +238,7 @@ fun FacebookSignUp() {
             Icon(
                 imageVector = Icons.Default.Phone,
                 contentDescription = null,
-                modifier = Modifier.padding(end = 4.dp)
+                modifier = Modifier.padding(end = 0.dp)
             )
             Text(
                 text = "Phone",
@@ -247,14 +256,14 @@ fun GoogleSignUp() {
     // Icon Button
     // Icon on the Right of text
     Button(
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(12.dp),
         onClick = {},
         modifier = Modifier
             .padding(1.dp)
             .size(120.dp, 50.dp),
 
         colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color.Red,
+            backgroundColor = colorResource(id = R.color.oneblood),
             contentColor = Color.White
         )
     ) {
