@@ -1,26 +1,19 @@
 package com.example.oneblood.screens
 
-import android.graphics.Paint
+
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
@@ -31,8 +24,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -41,6 +32,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.oneblood.R
 import com.example.oneblood.ui.theme.Purple500
 import com.example.oneblood.ui.theme.oneblod
@@ -48,9 +40,9 @@ import com.example.oneblood.ui.theme.oneblod2
 import com.example.oneblood.ui.theme.onewhite
 
 @ExperimentalAnimationApi
-@Preview
+//@Preview
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navController: NavController) {
     var visible = remember { mutableStateOf(true) }
     Column(
         modifier = Modifier
@@ -60,8 +52,8 @@ fun LoginScreen() {
     ) {
 
         Column {
-            LoginContent()
-            UsefulLinks()
+            LoginContent(navController)
+            UsefulLinks(navController)
         }
 
 
@@ -71,7 +63,7 @@ fun LoginScreen() {
 }
 
 @Composable
-fun LoginContent() {
+fun LoginContent(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
@@ -147,7 +139,9 @@ fun LoginContent() {
 
         Button(
             shape = RoundedCornerShape(10.dp),
-            onClick = { /*TODO*/ },
+            onClick = {
+                      navController.navigate("Register")
+            },
             colors = ButtonDefaults.buttonColors(
                 backgroundColor  = colorResource(R.color.loginbtn),
             ),
@@ -180,26 +174,29 @@ fun SignIn() {
 }
 
 
-@Preview
+//@Preview
 @Composable
-fun UsefulLinks() {
+fun UsefulLinks(navController: NavController) {
     Column(
         modifier = Modifier
             .wrapContentHeight()
             .padding(20.dp, 10.dp)
             .wrapContentWidth()
     ) {
-        Registerlink()
+        Registerlink(navController)
         SocialRegister()
     }
 
 }
 
-@Preview
+//@Preview
 @Composable
-fun Registerlink() {
+fun Registerlink(navController: NavController) {
     Text(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier.fillMaxWidth()
+            .clickable (enabled = true,onClick = {
+                navController.navigate("Register")
+            }),
         text = stringResource(id = R.string.registerLink),
         fontStyle = FontStyle(R.font.cavdreams),
         textAlign = TextAlign.Center,
