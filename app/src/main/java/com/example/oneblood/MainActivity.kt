@@ -64,8 +64,8 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "splash") {
         composable("splash") { Splash(navController) }
-        composable("Login") { LoginScreen() }
-        composable("Register") { SignupScreen() }
+        composable("Login") { LoginScreen(navController) }
+        composable("Register") { SignupScreen(navController) }
 
 
     }
