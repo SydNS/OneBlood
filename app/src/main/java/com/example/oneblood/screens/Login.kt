@@ -38,6 +38,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.oneblood.R
 
 @ExperimentalAnimationApi
@@ -195,7 +196,7 @@ fun Registerlink() {
 fun SocialRegister() {
     Row(
         modifier = Modifier
-            .padding(1.dp, 0.dp)
+            .padding(1.dp, 10.dp)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceEvenly
@@ -212,9 +213,10 @@ fun FacebookSignUp() {
     // Icon Button
     // Icon on the left of text
     Button(
+        shape = RoundedCornerShape(30.dp),
         onClick = {}, modifier = Modifier
             .padding(1.dp)
-            .wrapContentSize(align = Alignment.CenterEnd), colors = ButtonDefaults.buttonColors(
+            .size(120.dp, 50.dp), colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.Red,
             contentColor = Color.White
         )
@@ -226,7 +228,7 @@ fun FacebookSignUp() {
                 contentDescription = null,
                 modifier = Modifier.padding(end = 4.dp)
             )
-            Text(text = "Phone")
+            Text(text = "Phone", fontSize = 20.sp)
         }
     }
 
@@ -238,12 +240,18 @@ fun GoogleSignUp() {
     // Icon Button
     // Icon on the Right of text
     Button(
-        onClick = {}, modifier = Modifier.padding(1.dp), colors = ButtonDefaults.buttonColors(
+        shape = RoundedCornerShape(30.dp),
+        onClick = {},
+        modifier = Modifier
+            .padding(1.dp)
+            .size(120.dp, 50.dp),
+
+        colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.Red,
             contentColor = Color.White
         )
     ) {
-        Text(text = "Gmail", color = Color.White)
+        Text(text = "Gmail", color = Color.White, fontSize = 20.sp)
         Icon(
             imageVector = Icons.Default.Email,
             contentDescription = null,
