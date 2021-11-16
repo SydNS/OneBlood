@@ -51,7 +51,7 @@ import org.intellij.lang.annotations.JdkConstants
 @ExperimentalAnimationApi
 //@Preview
 @Composable
-fun SignupScreen( navController: NavController) {
+fun SignupScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -111,57 +111,55 @@ fun SignupContent(navController: NavController) {
                 cursorColor = Color.White,
                 unfocusedBorderColor = Color.White,
                 unfocusedLabelColor = Color.White
-
             ),
-            placeholder = { Text(text = "Email Address") },
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
             label = { Text(text = "Email Address") },
-
             singleLine = true
         )
 
         val textPassd = remember { mutableStateOf("") }
         OutlinedTextField(
             value = textPassd.value,
+            visualTransformation = PasswordVisualTransformation(),
             onValueChange = { textPassd.value = it },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.White,
                 focusedLabelColor = Color.White,
                 cursorColor = Color.White,
                 unfocusedBorderColor = Color.White,
-                unfocusedLabelColor = Color.White
+                unfocusedLabelColor = Color.White,
+                placeholderColor = Color.White
             ),
-            placeholder = { Text(text = "Password") },
+            textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
             label = { Text(text = "Password") },
-
             singleLine = true
         )
-
 
         val textPassd2 = remember { mutableStateOf("") }
 
         OutlinedTextField(
-            value = textPassd.value,
+            value = textPassd2.value,
+            visualTransformation = PasswordVisualTransformation(),
             onValueChange = { textPassd2.value = it },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.White,
                 focusedLabelColor = Color.White,
                 cursorColor = Color.White,
                 unfocusedBorderColor = Color.White,
-                unfocusedLabelColor = Color.White
+                unfocusedLabelColor = Color.White,
+                placeholderColor = Color.White
             ),
-            placeholder = { Text(text = "Confirm Password") },
+            textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
             label = { Text(text = "Confirm Password") },
-
             singleLine = true
         )
 
@@ -179,8 +177,8 @@ fun loginbutton(navController: NavController) {
     Button(
         shape = RoundedCornerShape(10.dp),
         onClick = {
-                  navController.navigate("Login")
-                  },
+            navController.navigate("Login")
+        },
         colors = ButtonDefaults.buttonColors(
             backgroundColor = colorResource(R.color.loginbtn),
         ),
