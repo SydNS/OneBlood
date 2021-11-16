@@ -26,6 +26,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.oneblood.scre.Splash
 import com.example.oneblood.screens.LoginScreen
+import com.example.oneblood.screens.SignupScreen
 import com.example.oneblood.ui.theme.OneBloodTheme
 
 class MainActivity : ComponentActivity() {
@@ -64,6 +65,8 @@ fun Navigation() {
     NavHost(navController = navController, startDestination = "splash") {
         composable("splash") { Splash(navController) }
         composable("Login") { LoginScreen() }
+        composable("Register") { SignupScreen() }
+
 
     }
 
