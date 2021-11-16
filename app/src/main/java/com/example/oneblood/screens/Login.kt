@@ -207,7 +207,7 @@ fun FacebookSignUp() {
     // Icon on the left of text
     Button(
         onClick = {}, modifier = Modifier
-            .padding(8.dp)
+            .padding(1.dp)
             .wrapContentSize(align = Alignment.CenterEnd)
     ) {
         Row {
@@ -228,7 +228,7 @@ fun GoogleSignUp() {
     // Icon Button
     // Icon on the Right of text
     Button(
-        onClick = {}, modifier = Modifier.padding(8.dp), colors = ButtonDefaults.buttonColors(
+        onClick = {}, modifier = Modifier.padding(1.dp), colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.Red
         )
     ) {
