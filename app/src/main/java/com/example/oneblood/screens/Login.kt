@@ -93,9 +93,9 @@ fun LoginContent() {
         OutlinedTextField(
             value = "",
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Red,
-                focusedLabelColor = Color.Red,
-                cursorColor = Color.Red
+                focusedBorderColor = Color.White,
+                focusedLabelColor = Color.White,
+                cursorColor = Color.White
             ),
             placeholder = { Text(text = "Email Address") },
             textStyle = TextStyle(color = Color.White),
@@ -110,9 +110,9 @@ fun LoginContent() {
         OutlinedTextField(
             value = "",
             colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Red,
-                focusedLabelColor = Color.Red,
-                cursorColor = Color.Red
+                focusedBorderColor = Color.White,
+                focusedLabelColor = Color.White,
+                cursorColor = Color.White
             ),
             placeholder = { Text(text = "Password") },
             onValueChange = {},
