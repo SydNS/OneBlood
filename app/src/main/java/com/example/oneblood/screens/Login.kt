@@ -89,17 +89,18 @@ fun LoginContent() {
                 .align(alignment = Alignment.CenterHorizontally)
                 .graphicsLayer(alpha = 5F)
         )
-
+        val textEmail = remember { mutableStateOf("") }
         OutlinedTextField(
-            value = "",
+            value = textEmail.value,
+            onValueChange = { textEmail.value = it },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.White,
                 focusedLabelColor = Color.White,
-                cursorColor = Color.White
+                cursorColor = Color.White,
+                unfocusedBorderColor = Color.White
             ),
             placeholder = { Text(text = "Email Address") },
             textStyle = TextStyle(color = Color.White),
-            onValueChange = {},
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
@@ -107,15 +108,18 @@ fun LoginContent() {
 
             singleLine = true
         )
+
+        val textPassd = remember { mutableStateOf("") }
         OutlinedTextField(
-            value = "",
+            value = textPassd.value,
+            onValueChange = { textPassd.value = it },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.White,
                 focusedLabelColor = Color.White,
-                cursorColor = Color.White
+                cursorColor = Color.White,
+                unfocusedBorderColor = Color.White
             ),
             placeholder = { Text(text = "Password") },
-            onValueChange = {},
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
