@@ -37,7 +37,7 @@ fun Splash(navController: NavController){
                     .getInterpolation(it)
             }
         ))
-        delay(3000L)
+        delay(1000L)
         navController.navigate("Login")
     }
     Box(modifier = Modifier
