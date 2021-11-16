@@ -19,6 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.graphicsLayer
@@ -41,12 +42,16 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.oneblood.R
+import com.example.oneblood.ui.theme.oneblod
+import com.example.oneblood.ui.theme.oneblod2
+import org.intellij.lang.annotations.JdkConstants
 
 @ExperimentalAnimationApi
-@Preview
+//@Preview
 @Composable
-fun SignupScreen() {
+fun SignupScreen( navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -55,7 +60,7 @@ fun SignupScreen() {
     ) {
 
         Column {
-            SignupContent()
+            SignupContent(navController)
             LoginLinks()
         }
 
@@ -66,14 +71,18 @@ fun SignupScreen() {
 }
 
 @Composable
-fun SignupContent() {
+fun SignupContent(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
             .padding(1.dp, 100.dp, 1.dp, 10.dp)
             .wrapContentHeight(align = Alignment.CenterVertically)
             .background(
-                color = colorResource(R.color.oneblood),
+                brush = Brush.verticalGradient(
+                    colors = listOf(
+                        oneblod2, oneblod
+                    ),
+                ),
                 shape = RoundedCornerShape(
                     250.dp,
                     0.dp, 250.dp, 250.dp
@@ -156,24 +165,34 @@ fun SignupContent() {
             singleLine = true
         )
 
-        Button(
-            shape = RoundedCornerShape(10.dp),
-            onClick = { /*TODO*/ },
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = colorResource(R.color.loginbtn),
-            ),
-            modifier = Modifier
-                .padding(0.dp, 10.dp)
-                .align(alignment = Alignment.CenterHorizontally)
-                .width(280.dp)
-                .height(50.dp),
 
-            ) {
-            Text(
-                text = stringResource(id = R.string.login), color = Color.White
-            )
-
+        Box(modifier = Modifier.align(alignment = Alignment.CenterHorizontally)) {
+            loginbutton(navController)
         }
+
+    }
+}
+
+
+@Composable
+fun loginbutton(navController: NavController) {
+    Button(
+        shape = RoundedCornerShape(10.dp),
+        onClick = {
+                  navController.navigate("Login")
+                  },
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = colorResource(R.color.loginbtn),
+        ),
+        modifier = Modifier
+            .padding(0.dp, 10.dp)
+            .width(280.dp)
+            .height(50.dp),
+
+        ) {
+        Text(
+            text = stringResource(id = R.string.login), color = Color.White
+        )
 
     }
 }
