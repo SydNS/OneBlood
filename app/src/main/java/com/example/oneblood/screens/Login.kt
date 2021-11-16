@@ -105,14 +105,12 @@ fun LoginContent(navController: NavController) {
                 cursorColor = Color.White,
                 unfocusedBorderColor = Color.White,
                 unfocusedLabelColor = Color.White
-
             ),
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
             label = { Text(text = "Email Address") },
-
             singleLine = true
         )
 
@@ -130,12 +128,10 @@ fun LoginContent(navController: NavController) {
                 placeholderColor = Color.White
             ),
             textStyle = TextStyle(color = Color.White),
-
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
             label = { Text(text = "Password") },
-
             singleLine = true
         )
 
