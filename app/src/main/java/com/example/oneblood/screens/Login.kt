@@ -73,11 +73,11 @@ fun LoginContent(navController: NavController) {
 
                 brush = Brush.verticalGradient(
                     colors = listOf(
-                        oneblod2,oneblod
+                        oneblod2, oneblod
                     ),
                 )
 //                color = colorResource(R.color.oneblood),
-                ,shape = RoundedCornerShape(
+                , shape = RoundedCornerShape(
                     250.dp,
                     0.dp, 250.dp, 250.dp
                 )
@@ -107,7 +107,6 @@ fun LoginContent(navController: NavController) {
                 unfocusedLabelColor = Color.White
 
             ),
-            placeholder = { Text(text = "Email Address") },
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
@@ -120,15 +119,18 @@ fun LoginContent(navController: NavController) {
         val textPassd = remember { mutableStateOf("") }
         OutlinedTextField(
             value = textPassd.value,
+            visualTransformation = PasswordVisualTransformation(),
             onValueChange = { textPassd.value = it },
             colors = TextFieldDefaults.outlinedTextFieldColors(
                 focusedBorderColor = Color.White,
                 focusedLabelColor = Color.White,
                 cursorColor = Color.White,
                 unfocusedBorderColor = Color.White,
-                unfocusedLabelColor = Color.White
+                unfocusedLabelColor = Color.White,
+                placeholderColor = Color.White
             ),
-            placeholder = { Text(text = "Password") },
+            textStyle = TextStyle(color = Color.White),
+
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
                 .padding(0.dp, 5.dp),
@@ -140,10 +142,10 @@ fun LoginContent(navController: NavController) {
         Button(
             shape = RoundedCornerShape(10.dp),
             onClick = {
-                      navController.navigate("Register")
+                navController.navigate("Register")
             },
             colors = ButtonDefaults.buttonColors(
-                backgroundColor  = colorResource(R.color.loginbtn),
+                backgroundColor = colorResource(R.color.loginbtn),
             ),
             modifier = Modifier
                 .padding(0.dp, 10.dp)
@@ -193,8 +195,9 @@ fun UsefulLinks(navController: NavController) {
 @Composable
 fun Registerlink(navController: NavController) {
     Text(
-        modifier = Modifier.fillMaxWidth()
-            .clickable (enabled = true,onClick = {
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(enabled = true, onClick = {
                 navController.navigate("Register")
             }),
         text = stringResource(id = R.string.registerLink),
