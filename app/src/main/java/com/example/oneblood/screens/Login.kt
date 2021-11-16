@@ -52,10 +52,10 @@ fun LoginScreen() {
 
     ) {
 
-Column {
-LoginContent()
-    UsefulLinks()
-}
+        Column {
+            LoginContent()
+            UsefulLinks()
+        }
 
 
     }
@@ -68,6 +68,7 @@ fun LoginContent() {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
+            .padding(0.dp, 140.dp, 0.dp, 10.dp)
             .wrapContentHeight(align = Alignment.CenterVertically)
             .background(
                 color = Color.Red, shape = RoundedCornerShape(
@@ -160,10 +161,11 @@ fun SignIn() {
 @Preview
 @Composable
 fun UsefulLinks() {
-    Column(modifier = Modifier
-        .wrapContentHeight()
-        .padding(20.dp, 10.dp)
-        .wrapContentWidth()
+    Column(
+        modifier = Modifier
+            .wrapContentHeight()
+            .padding(20.dp, 10.dp)
+            .wrapContentWidth()
     ) {
         Registerlink()
         SocialRegister()
@@ -174,7 +176,8 @@ fun UsefulLinks() {
 @Preview
 @Composable
 fun Registerlink() {
-    Text(modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally),
+    Text(
+        modifier = Modifier.fillMaxWidth(),
         text = stringResource(id = R.string.registerLink),
         fontStyle = FontStyle(R.font.cavdreams),
         textAlign = TextAlign.Center
@@ -186,8 +189,11 @@ fun Registerlink() {
 @Preview
 @Composable
 fun SocialRegister() {
-    Row(modifier = Modifier.padding(10.dp, 0.dp)
-        .wrapContentSize(align = Alignment.Center)) {
+    Row(
+        modifier = Modifier
+            .padding(10.dp, 0.dp)
+            .fillMaxWidth()
+    ) {
         GoogleSignUp()
         FacebookSignUp()
 
@@ -199,7 +205,11 @@ fun SocialRegister() {
 fun FacebookSignUp() {
     // Icon Button
     // Icon on the left of text
-    Button(onClick = {}, modifier = Modifier.padding(8.dp)) {
+    Button(
+        onClick = {}, modifier = Modifier
+            .padding(8.dp)
+            .wrapContentSize(align = Alignment.CenterEnd)
+    ) {
         Row {
             Icon(
                 imageVector = Icons.Default.Phone,
@@ -217,11 +227,12 @@ fun FacebookSignUp() {
 fun GoogleSignUp() {
     // Icon Button
     // Icon on the Right of text
-    Button(onClick = {}, modifier = Modifier.padding(8.dp)
-    ,colors = ButtonDefaults.buttonColors(
+    Button(
+        onClick = {}, modifier = Modifier.padding(8.dp), colors = ButtonDefaults.buttonColors(
             backgroundColor = Color.Red
-    )) {
-        Text(text = "Gmail",color = Color.White)
+        )
+    ) {
+        Text(text = "Gmail", color = Color.White)
         Icon(
             imageVector = Icons.Default.Email,
             contentDescription = null,
