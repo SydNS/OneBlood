@@ -33,6 +33,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -185,7 +186,9 @@ fun Registerlink() {
         modifier = Modifier.fillMaxWidth(),
         text = stringResource(id = R.string.registerLink),
         fontStyle = FontStyle(R.font.cavdreams),
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Light
     )
     Divider(color = Color.Gray, thickness = 1.dp)
 
@@ -213,7 +216,7 @@ fun FacebookSignUp() {
     // Icon Button
     // Icon on the left of text
     Button(
-        shape = RoundedCornerShape(30.dp),
+        shape = RoundedCornerShape(20.dp),
         onClick = {}, modifier = Modifier
             .padding(1.dp)
             .size(120.dp, 50.dp), colors = ButtonDefaults.buttonColors(
@@ -228,7 +231,11 @@ fun FacebookSignUp() {
                 contentDescription = null,
                 modifier = Modifier.padding(end = 4.dp)
             )
-            Text(text = "Phone", fontSize = 20.sp)
+            Text(
+                text = "Phone",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Light
+            )
         }
     }
 
@@ -240,7 +247,7 @@ fun GoogleSignUp() {
     // Icon Button
     // Icon on the Right of text
     Button(
-        shape = RoundedCornerShape(30.dp),
+        shape = RoundedCornerShape(20.dp),
         onClick = {},
         modifier = Modifier
             .padding(1.dp)
@@ -251,7 +258,12 @@ fun GoogleSignUp() {
             contentColor = Color.White
         )
     ) {
-        Text(text = "Gmail", color = Color.White, fontSize = 20.sp)
+        Text(
+            text = "Gmail",
+            color = Color.White,
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Light
+        )
         Icon(
             imageVector = Icons.Default.Email,
             contentDescription = null,
