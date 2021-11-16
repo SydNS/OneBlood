@@ -68,7 +68,7 @@ fun LoginContent() {
     Column(
         modifier = Modifier
             .fillMaxWidth(1f)
-            .padding(0.dp, 140.dp, 0.dp, 10.dp)
+            .padding(1.dp, 140.dp, 1.dp, 10.dp)
             .wrapContentHeight(align = Alignment.CenterVertically)
             .background(
                 color = Color.Red, shape = RoundedCornerShape(
@@ -191,8 +191,10 @@ fun Registerlink() {
 fun SocialRegister() {
     Row(
         modifier = Modifier
-            .padding(10.dp, 0.dp)
-            .fillMaxWidth()
+            .padding(1.dp, 0.dp)
+            .fillMaxWidth(),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         GoogleSignUp()
         FacebookSignUp()
@@ -208,7 +210,11 @@ fun FacebookSignUp() {
     Button(
         onClick = {}, modifier = Modifier
             .padding(1.dp)
-            .wrapContentSize(align = Alignment.CenterEnd)
+            .wrapContentSize(align = Alignment.CenterEnd), colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color.Red,
+            contentColor = Color.White
+        )
+
     ) {
         Row {
             Icon(
@@ -229,7 +235,8 @@ fun GoogleSignUp() {
     // Icon on the Right of text
     Button(
         onClick = {}, modifier = Modifier.padding(1.dp), colors = ButtonDefaults.buttonColors(
-            backgroundColor = Color.Red
+            backgroundColor = Color.Red,
+            contentColor = Color.White
         )
     ) {
         Text(text = "Gmail", color = Color.White)
