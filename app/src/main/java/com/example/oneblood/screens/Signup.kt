@@ -40,6 +40,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -61,7 +62,7 @@ fun SignupScreen(navController: NavController) {
 
         Column {
             SignupContent(navController)
-            LoginLinks()
+            LoginLinks(navController)
         }
 
 
@@ -176,6 +177,7 @@ fun SignupContent(navController: NavController) {
 fun loginbutton(navController: NavController) {
     Button(
         shape = RoundedCornerShape(10.dp),
+        elevation = ButtonDefaults.elevation(3.dp),
         onClick = {
             navController.navigate("Login")
         },
@@ -189,7 +191,7 @@ fun loginbutton(navController: NavController) {
 
         ) {
         Text(
-            text = stringResource(id = R.string.login), color = Color.White
+            text = stringResource(id = R.string.signup), color = Color.White
         )
 
     }
@@ -208,30 +210,30 @@ fun SignUp() {
 }
 
 
-@Preview
+//@Preview
 @Composable
-fun LoginLinks() {
+fun LoginLinks(navController: NavController) {
     Column(
         modifier = Modifier
             .wrapContentHeight()
             .padding(20.dp, 10.dp)
             .wrapContentWidth()
     ) {
-        Signinlink()
+        Signinlink(navController)
         SocialRegister()
     }
 
 }
 
-@Preview
+//@Preview
 @Composable
-fun Signinlink() {
+fun Signinlink(navController: NavController) {
     Text(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable {
-
-            },
+            .clickable(enabled = true, onClick = {
+                navController.navigate("Login")
+            }),
         text = stringResource(id = R.string.loginLink),
         fontStyle = FontStyle(R.font.cavdreams),
         textAlign = TextAlign.Center,
