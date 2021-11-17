@@ -177,7 +177,7 @@ fun SignupContent(navController: NavController) {
 fun loginbutton(navController: NavController) {
     Button(
         shape = RoundedCornerShape(10.dp),
-        elevation = ButtonDefaults.elevation(3.dp),
+        elevation = ButtonDefaults.elevation(5.dp),
         onClick = {
             navController.navigate("Login")
         },

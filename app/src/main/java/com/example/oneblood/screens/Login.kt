@@ -140,7 +140,7 @@ fun LoginContent(navController: NavController) {
             onClick = {
                 navController.navigate("Register")
             },
-            elevation = ButtonDefaults.elevation(3.dp),
+            elevation = ButtonDefaults.elevation(5.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(R.color.loginbtn),
             ),
