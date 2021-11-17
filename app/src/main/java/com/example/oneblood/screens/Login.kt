@@ -1,15 +1,16 @@
 package com.example.oneblood.screens
 
 
+import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -106,6 +107,18 @@ fun LoginContent(navController: NavController) {
                 unfocusedBorderColor = Color.White,
                 unfocusedLabelColor = Color.White
             ),
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                    },
+                ) {
+                    Icon(
+                        Icons.Default.Email,
+                        contentDescription = "Localized description",
+                        tint = Color.White
+                    )
+                }
+            },
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
@@ -115,6 +128,7 @@ fun LoginContent(navController: NavController) {
         )
 
         val textPassd = remember { mutableStateOf("") }
+
         OutlinedTextField(
             value = textPassd.value,
             visualTransformation = PasswordVisualTransformation(),
@@ -127,6 +141,20 @@ fun LoginContent(navController: NavController) {
                 unfocusedLabelColor = Color.White,
                 placeholderColor = Color.White
             ),
+
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                    },
+                ) {
+                    Icon(
+                        Icons.Default.Lock,
+                        contentDescription = "password field",
+                        tint = Color.White
+                    )
+                }
+            },
+
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
@@ -138,9 +166,10 @@ fun LoginContent(navController: NavController) {
         Button(
             shape = RoundedCornerShape(10.dp),
             onClick = {
+
                 navController.navigate("Register")
             },
-            elevation = ButtonDefaults.elevation(3.dp),
+            elevation = ButtonDefaults.elevation(5.dp),
             colors = ButtonDefaults.buttonColors(
                 backgroundColor = colorResource(R.color.loginbtn),
             ),
@@ -244,13 +273,13 @@ fun FacebookSignUp() {
     ) {
         Row {
             Icon(
-                imageVector = Icons.Default.Phone,
+                imageVector = Icons.Default.AccountBox,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 0.dp)
             )
             Text(
                 text = "Phone",
-                fontSize = 20.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Light
             )
         }
@@ -278,7 +307,7 @@ fun GoogleSignUp() {
         Text(
             text = "Gmail",
             color = Color.White,
-            fontSize = 20.sp,
+            fontSize = 15.sp,
             fontWeight = FontWeight.Light
         )
         Icon(
@@ -287,4 +316,52 @@ fun GoogleSignUp() {
             modifier = Modifier.padding(start = 4.dp)
         )
     }
+}
+
+@Preview
+@Composable
+fun MyAlertDialog() {
+    val shouldShowDialog = remember { mutableStateOf(true) } // 1
+    if (shouldShowDialog.value) { // 2
+        AlertDialog( // 3
+            onDismissRequest = { // 4
+                shouldShowDialog.value = false
+//navigatio
+            },
+            title = {
+                Text(
+                    text = stringResource(
+                        id =
+                        R.string.app_name
+                    )
+                )
+            },
+            text = {
+                Text(
+                    text = stringResource(
+                        id =
+                        R.string.login
+                    )
+                )
+            },
+            confirmButton = { // 6
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor =
+                        colorResource(id = R.color.oneblood)
+                    ),
+                    onClick = {
+                        shouldShowDialog.value = false
+
+//                        JetFundamentalsRouter.navigateTo(Screen.Navigation)
+                    }
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.login),
+                        color = Color.White
+                    )
+                }
+            })
+    }
+
 }
