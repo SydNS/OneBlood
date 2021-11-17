@@ -117,7 +117,15 @@ fun OnBoardingScreen(
 
     }
 
+}
 
+@Composable
+fun PageIndicator(
+    size:Int,currentPage:Int
+){
+    Row(
+        horizontalArrangement = Arrangement.SpaceBetween
+    )
 }
 
 
