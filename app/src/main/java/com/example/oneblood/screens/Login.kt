@@ -278,7 +278,7 @@ fun FacebookSignUp() {
             )
             Text(
                 text = "Phone",
-                fontSize = 20.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight.Light
             )
         }
@@ -306,7 +306,7 @@ fun GoogleSignUp() {
         Text(
             text = "Gmail",
             color = Color.White,
-            fontSize = 20.sp,
+            fontSize = 15.sp,
             fontWeight = FontWeight.Light
         )
         Icon(
