@@ -12,6 +12,8 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -113,6 +115,18 @@ fun SignupContent(navController: NavController) {
                 unfocusedBorderColor = Color.White,
                 unfocusedLabelColor = Color.White
             ),
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                    },
+                ) {
+                    Icon(
+                        Icons.Default.Email,
+                        contentDescription = "password field",
+                        tint = Color.White
+                    )
+                }
+            },
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
@@ -134,6 +148,19 @@ fun SignupContent(navController: NavController) {
                 unfocusedLabelColor = Color.White,
                 placeholderColor = Color.White
             ),
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                    },
+                ) {
+                    Icon(
+                        Icons.Default.Lock,
+                        contentDescription = "password field",
+                        tint = Color.White
+                    )
+                }
+            },
+
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
@@ -156,6 +183,18 @@ fun SignupContent(navController: NavController) {
                 unfocusedLabelColor = Color.White,
                 placeholderColor = Color.White
             ),
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                    },
+                ) {
+                    Icon(
+                        Icons.Default.Lock,
+                        contentDescription = "password field",
+                        tint = Color.White
+                    )
+                }
+            },
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)

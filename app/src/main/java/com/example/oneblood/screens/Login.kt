@@ -1,15 +1,16 @@
 package com.example.oneblood.screens
 
 
+import android.widget.Toast
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -106,6 +107,18 @@ fun LoginContent(navController: NavController) {
                 unfocusedBorderColor = Color.White,
                 unfocusedLabelColor = Color.White
             ),
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                    },
+                ) {
+                    Icon(
+                        Icons.Default.Email,
+                        contentDescription = "Localized description",
+                        tint = Color.White
+                    )
+                }
+            },
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
@@ -115,6 +128,7 @@ fun LoginContent(navController: NavController) {
         )
 
         val textPassd = remember { mutableStateOf("") }
+
         OutlinedTextField(
             value = textPassd.value,
             visualTransformation = PasswordVisualTransformation(),
@@ -127,6 +141,20 @@ fun LoginContent(navController: NavController) {
                 unfocusedLabelColor = Color.White,
                 placeholderColor = Color.White
             ),
+
+            trailingIcon = {
+                IconButton(
+                    onClick = {
+                    },
+                ) {
+                    Icon(
+                        Icons.Default.Lock,
+                        contentDescription = "password field",
+                        tint = Color.White
+                    )
+                }
+            },
+
             textStyle = TextStyle(color = Color.White),
             modifier = Modifier
                 .align(alignment = Alignment.CenterHorizontally)
@@ -244,7 +272,7 @@ fun FacebookSignUp() {
     ) {
         Row {
             Icon(
-                imageVector = Icons.Default.Phone,
+                imageVector = Icons.Default.AccountBox,
                 contentDescription = null,
                 modifier = Modifier.padding(end = 0.dp)
             )
