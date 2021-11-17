@@ -6,9 +6,11 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
-import androidx.compose.material.Typography
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -16,8 +18,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.viewpager2.widget.ViewPager2
@@ -117,6 +122,12 @@ fun OnBoardingScreen(
                 }
 
             }
+
+            PageIndicator(size = items.size, currentPage = pagerState)
+        }
+        Box(modifier =Modifier.align(alignment = Alignment.BottomCenter) ) {
+            BottomSection(currentPager = pagerState.currentPage)
+
         }
 
 
@@ -132,7 +143,7 @@ fun PageIndicator(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.padding(top = 60.dp)
     ) {
-
+        Indicators(isSelected = it == currentPage)
     }
 }
 
@@ -140,13 +151,61 @@ fun PageIndicator(
 fun Indicators(isSelected: Boolean) {
     val width = animateDpAsState(targetValue = if (isSelected) 25.dp else 10.dp)
 
-    Box(modifier = Modifier
-        .padding(1.dp)
-        .height(10.dp)
-        .width(width.value)
-        .clip(CircleShape)
-        .background(if (isSelected) Color.Black else Color.Red)
+    Box(
+        modifier = Modifier
+            .padding(1.dp)
+            .height(10.dp)
+            .width(width.value)
+            .clip(CircleShape)
+            .background(if (isSelected) Color.Black else Color.Red)
     )
 
 }
 
+@Composable
+fun BottomSection(currentPager: Int): Unit {
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 20.dp), horizontalArrangement = if (
+            currentPager != 2
+        ) Arrangement.SpaceBetween else Arrangement.Center
+
+    ) {
+        Skip()
+        Skip()
+    }
+}
+
+
+@Preview
+@Composable
+fun Skip() {
+    // Icon Button
+    // Icon on the Right of text
+    Button(
+        shape = RoundedCornerShape(12.dp),
+        onClick = {},
+        modifier = Modifier
+            .padding(1.dp)
+            .size(120.dp, 50.dp),
+
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = colorResource(id = R.color.oneblood),
+            contentColor = Color.White
+        )
+    ) {
+        Text(
+            text = "Skip",
+            color = Color.White,
+            fontSize = 15.sp,
+            fontWeight = FontWeight.Light
+        )
+        Icon(
+            imageVector = Icons.Default.ArrowForward,
+            contentDescription = null,
+            modifier = Modifier.padding(start = 4.dp)
+        )
+    }
+}

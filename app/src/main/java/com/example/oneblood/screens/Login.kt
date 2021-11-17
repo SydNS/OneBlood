@@ -166,6 +166,7 @@ fun LoginContent(navController: NavController) {
         Button(
             shape = RoundedCornerShape(10.dp),
             onClick = {
+
                 navController.navigate("Register")
             },
             elevation = ButtonDefaults.elevation(5.dp),
@@ -315,4 +316,52 @@ fun GoogleSignUp() {
             modifier = Modifier.padding(start = 4.dp)
         )
     }
+}
+
+@Preview
+@Composable
+fun MyAlertDialog() {
+    val shouldShowDialog = remember { mutableStateOf(true) } // 1
+    if (shouldShowDialog.value) { // 2
+        AlertDialog( // 3
+            onDismissRequest = { // 4
+                shouldShowDialog.value = false
+//navigatio
+            },
+            title = {
+                Text(
+                    text = stringResource(
+                        id =
+                        R.string.app_name
+                    )
+                )
+            },
+            text = {
+                Text(
+                    text = stringResource(
+                        id =
+                        R.string.login
+                    )
+                )
+            },
+            confirmButton = { // 6
+                Button(
+                    colors = ButtonDefaults.buttonColors(
+                        backgroundColor =
+                        colorResource(id = R.color.oneblood)
+                    ),
+                    onClick = {
+                        shouldShowDialog.value = false
+
+//                        JetFundamentalsRouter.navigateTo(Screen.Navigation)
+                    }
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.login),
+                        color = Color.White
+                    )
+                }
+            })
+    }
+
 }
