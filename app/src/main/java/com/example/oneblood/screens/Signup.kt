@@ -317,6 +317,8 @@ fun AnnotatedClickableText() {
         withStyle(
             style = SpanStyle(
                 color = Color.Red,
+                background = Color.White,
+                fontFamily = cavdreams
             )
         ) {
             append("Sign Up")
