@@ -4,6 +4,7 @@ import androidx.annotation.FloatRange
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,17 +20,23 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.fontResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.oneblood.R
 import com.example.oneblood.dataclasses.OnBoardingData
 import com.example.oneblood.ui.theme.Purple200
 import com.example.oneblood.ui.theme.Typography
+import com.example.oneblood.ui.theme.oneblod
+import com.example.oneblood.ui.theme.oneblod2
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -39,28 +46,28 @@ import java.util.ArrayList
 @ExperimentalPagerApi
 @Composable
 fun OnBoardingScreen(
-
+    navController: NavController
 ) {
 
 
-    val items=ArrayList<OnBoardingData>()
+    val items = ArrayList<OnBoardingData>()
     items.add(
         OnBoardingData(
-            R.drawable.blood2,
+            R.drawable.blood6,
             "Welcome To OneBlood",
             "help medical personnel and patients in need of blood donation to look up for someone with the same blood type"
         )
     )
     items.add(
         OnBoardingData(
-            R.drawable.blood4,
+            R.drawable.blood2,
             "Lend a helping hand",
             "having a list of donors to select from provides comfort and assurance that the patients in question shall be attended to"
         )
     )
     items.add(
         OnBoardingData(
-            R.drawable.blood6,
+            R.drawable.blood8,
             "All Efforts are notices",
             "Donors will recieve points from the recipients which they can always redeem and use to acquire health services or even reduce their health services bills"
         )
@@ -72,12 +79,17 @@ fun OnBoardingScreen(
         infiniteLoop = false,
         initialPage = 0,
     )
-    Box(modifier = Modifier) {
+
+    val cavdreams = FontFamily(
+        Font(R.font.cavdreams, FontWeight.Light)
+    )
+
+    Box(modifier = Modifier.padding(bottom = 10.dp)) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             HorizontalPager(state = pagerState) { page ->
                 Column(
                     modifier = Modifier
-                        .padding(top = 60.dp).fillMaxSize()
+                        .padding(top = 60.dp)
                         .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
@@ -91,17 +103,23 @@ fun OnBoardingScreen(
 
                     Text(
                         text = items[page].title,
-                        modifier = Modifier.padding(top = 50.dp), color = Color.White,
-                        style = Typography.body1
+                        modifier = Modifier.padding(top = 10.dp), color = Color.Black,
+                        style = Typography.h3,
+                        fontWeight = FontWeight.SemiBold,
+                        textAlign = TextAlign.Center,
+                        fontFamily = cavdreams
+
                     )
 
                     Text(
                         text = items[page].desc,
-                        modifier = Modifier.padding(top = 30.dp, start = 20.dp, end = 20.dp),
-                        color = Color.White,
+                        modifier = Modifier.padding(top = 30.dp, start = 10.dp, end = 10.dp,bottom = 20.dp),
+                        color = Color.Black,
                         style = Typography.body1,
-                        fontSize = 18.sp,
-                        textAlign = TextAlign.Center
+                        fontSize = 20.sp,
+                        textAlign = TextAlign.Center,
+                        fontFamily = cavdreams
+
                     )
 
                 }
@@ -111,7 +129,7 @@ fun OnBoardingScreen(
         }
 
         Box(modifier = Modifier.align(Alignment.BottomCenter)) {
-            BottomSection(pagerState.currentPage)
+            BottomSection(pagerState.currentPage, navController)
         }
     }
 }
@@ -139,7 +157,7 @@ fun PagerIndicator(size: Int, currentPage: Int) {
     Row(
 
         horizontalArrangement = Arrangement.SpaceBetween,
-        modifier = Modifier.padding(top = 60.dp)
+        modifier = Modifier.padding(top = 90.dp)
     ) {
         repeat(size) {
             Indicator(isSelected = it == currentPage)
@@ -158,13 +176,13 @@ fun Indicator(isSelected: Boolean) {
             .width(width.value)
             .clip(CircleShape)
             .background(
-                if (isSelected) MaterialTheme.colors.primary else Purple200.copy(alpha = 0.5f)
+                if (isSelected) Color.Red else Color.DarkGray.copy(alpha = 0.5f)
             )
     )
 }
 
 @Composable
-fun BottomSection(currentPager: Int) {
+fun BottomSection(currentPager: Int, navController: NavController) {
     Row(
         modifier = Modifier
             .padding(bottom = 20.dp)
@@ -173,8 +191,15 @@ fun BottomSection(currentPager: Int) {
     ) {
 
         if (currentPager == 2) {
-            OutlinedButton(
-                onClick = { },
+            Button(
+                onClick = {
+                    navController.navigate("Login")
+                },
+                elevation = ButtonDefaults.elevation(5.dp),
+                colors = ButtonDefaults.buttonColors(
+                    backgroundColor =
+                    colorResource(id = R.color.oneblood)
+                ),
                 shape = RoundedCornerShape(50), // = 40% percent
             ) {
                 Text(
@@ -183,8 +208,19 @@ fun BottomSection(currentPager: Int) {
                     color = Color.White
                 )
             }
+        } else if (currentPager == 0) {
+
+            SkipNextButton("", Modifier.padding(end = 20.dp))
+            SkipNextButton(
+                "Next",
+                Modifier
+                    .padding(end = 20.dp)
+                    .clickable(enabled = true, onClick = {
+                        currentPager == 1
+                    })
+            )
         } else {
-            SkipNextButton("Skip", Modifier.padding(start = 20.dp))
+            SkipNextButton("Prev", Modifier.padding(start = 20.dp))
             SkipNextButton("Next", Modifier.padding(end = 20.dp))
         }
 
@@ -194,7 +230,7 @@ fun BottomSection(currentPager: Int) {
 @Composable
 fun SkipNextButton(text: String, modifier: Modifier) {
     Text(
-        text = text, color = Purple200, modifier = modifier, fontSize = 18.sp,
+        text = text, color = oneblod, modifier = modifier, fontSize = 18.sp,
         style = Typography.body1,
         fontWeight = FontWeight.Medium
     )
