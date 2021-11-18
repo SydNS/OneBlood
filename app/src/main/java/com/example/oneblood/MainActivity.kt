@@ -94,7 +94,7 @@ fun Navigation() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "splash") {
 
-        composable("onboarding") { OnBoardingScreen() }
+        composable("onboarding") { OnBoardingScreen(navController) }
         composable("splash") { Splash(navController) }
         composable("Login") { LoginScreen(navController) }
         composable("Register") { SignupScreen(navController) }
