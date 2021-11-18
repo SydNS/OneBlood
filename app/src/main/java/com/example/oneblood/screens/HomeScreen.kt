@@ -18,6 +18,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -85,26 +86,41 @@ fun Topsecetiontext(): Unit {
             style = SpanStyle(
                 color = Color.Gray,
                 fontStyle = FontStyle(R.font.cavdreams),
-                fontSize = 15.sp,
-                fontWeight = FontWeight.Light
+                fontWeight = FontWeight.Light,
+                fontSize = 34.sp
             )
         ) {
             append(
-                "GIVE THE GIFT OF LIFE"
+                "GIVE THE GIFT OF LIFE\n"
             )
 
         }
+        //add text with your different color/style
+        withStyle(
+            style = SpanStyle(
+                color = Color.White,
+                fontFamily = cavdreams,
+                fontSize = 43.sp,
+                fontWeight = FontWeight.Bold,
+                textDecoration = TextDecoration.Underline
 
+            )
+
+        ) {
+            append("DONATE")
+        }
         //add text with your different color/style
         withStyle(
             style = SpanStyle(
                 color = Color.Red,
-                fontSize = 15.sp,
                 background = Color.White,
-                fontFamily = cavdreams
+                fontFamily = cavdreams,
+                fontSize = 43.sp,
+                fontWeight = FontWeight.Bold
             )
+
         ) {
-            append("Sign Up")
+            append(" BLOOD ")
         }
 
     }
@@ -113,7 +129,25 @@ fun Topsecetiontext(): Unit {
         text = annotatedText,
         color = Color.White,
         modifier = Modifier.padding(20.dp, 50.dp),
-        fontFamily = cavdreams
+        fontFamily = cavdreams,
+        style = Typography.h5,
+        softWrap = true
     )
+
+}
+
+
+@Preview
+@Composable
+fun TopsectionRow(): Unit {
+
+    Row(
+        modifier = Modifier
+            .padding(20.dp, 50.dp)
+            .background(Color.Blue)
+            .fillMaxSize()
+    ) {
+
+    }
 
 }
