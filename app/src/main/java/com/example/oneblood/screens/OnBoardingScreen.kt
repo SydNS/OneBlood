@@ -77,7 +77,7 @@ fun OnBoardingScreen(
             HorizontalPager(state = pagerState) { page ->
                 Column(
                     modifier = Modifier
-                        .padding(top = 60.dp)
+                        .padding(top = 60.dp).fillMaxSize()
                         .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
