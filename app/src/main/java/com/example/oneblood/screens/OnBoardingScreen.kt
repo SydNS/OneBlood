@@ -28,33 +28,22 @@ import androidx.compose.ui.unit.sp
 import androidx.viewpager2.widget.ViewPager2
 import com.example.oneblood.R
 import com.example.oneblood.dataclasses.OnBoardingData
+import com.example.oneblood.ui.theme.Purple200
 import com.example.oneblood.ui.theme.Typography
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.PagerState
 import java.util.ArrayList
 
-@Composable
-fun rememberPagerState(
-    @androidx.annotation.IntRange(from = 0) pageCount: Int,
-    @androidx.annotation.IntRange(from = 0) initialPage: Int = 0,
-    @FloatRange(from = 0.0, to = 1.0) initialPageOffset: Float = 0f,
-    @androidx.annotation.IntRange(from = 1) initialOffscreenLimit: Int = 1,
-    infiniteLoop: Boolean = false
-): PagerState = rememberSaveable(saver = PagerState.Saver) {
-    PagerState(
-        pageCount = pageCount,
-        currentPage = initialPage,
-        currentPageOffset = initialOffscreenLimit,
-        infiniteLoop = infiniteLoop
-    )
-
-}
 
 @ExperimentalPagerApi
 @Composable
 fun OnBoardingScreen(
-    items: ArrayList<OnBoardingData>,
-    modifier: Modifier = Modifier
 
 ) {
+
+
+    val items=ArrayList<OnBoardingData>()
     items.add(
         OnBoardingData(
             R.drawable.blood2,
@@ -76,79 +65,90 @@ fun OnBoardingScreen(
             "Donors will recieve points from the recipients which they can always redeem and use to acquire health services or even reduce their health services bills"
         )
     )
+
     val pagerState = rememberPagerState(
         pageCount = items.size,
         initialOffscreenLimit = 2,
         infiniteLoop = false,
-        initialPage = 0
+        initialPage = 0,
     )
-
-    Box(
-        modifier = modifier
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+    Box(modifier = Modifier) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             HorizontalPager(state = pagerState) { page ->
                 Column(
-                    modifier = modifier
+                    modifier = Modifier
                         .padding(top = 60.dp)
                         .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally
                 ) {
+
                     Image(
                         painter = painterResource(id = items[page].image),
                         contentDescription = items[page].title,
-                        modifier
-                            .fillMaxWidth()
+                        modifier = Modifier
                             .height(250.dp)
+                            .fillMaxWidth()
                     )
 
                     Text(
                         text = items[page].title,
-                        modifier.padding(top = 50.dp),
-                        color = Color.Black,
-                        style = Typography.body1,
-                        fontSize = 25.sp,
-                        textAlign = TextAlign.Center
+                        modifier = Modifier.padding(top = 50.dp), color = Color.White,
+                        style = Typography.body1
                     )
+
                     Text(
-                        text = items[page].description,
-                        modifier.padding(top = 50.dp),
-                        color = Color.Black,
+                        text = items[page].desc,
+                        modifier = Modifier.padding(top = 30.dp, start = 20.dp, end = 20.dp),
+                        color = Color.White,
                         style = Typography.body1,
                         fontSize = 18.sp,
                         textAlign = TextAlign.Center
                     )
-                }
 
+                }
             }
 
-            PageIndicator(size = items.size, currentPage = pagerState)
-        }
-        Box(modifier =Modifier.align(alignment = Alignment.BottomCenter) ) {
-            BottomSection(currentPager = pagerState.currentPage)
-
+            PagerIndicator(items.size, pagerState.currentPage)
         }
 
-
+        Box(modifier = Modifier.align(Alignment.BottomCenter)) {
+            BottomSection(pagerState.currentPage)
+        }
     }
+}
 
+@ExperimentalPagerApi
+@Composable
+fun rememberPagerState(
+    @androidx.annotation.IntRange(from = 0) pageCount: Int,
+    @androidx.annotation.IntRange(from = 0) initialPage: Int = 0,
+    @FloatRange(from = 0.0, to = 1.0) initialPageOffset: Float = 0f,
+    @androidx.annotation.IntRange(from = 1) initialOffscreenLimit: Int = 1,
+    infiniteLoop: Boolean = false
+): PagerState = rememberSaveable(saver = PagerState.Saver) {
+    PagerState(
+        pageCount = pageCount,
+        currentPage = initialPage,
+        currentPageOffset = initialPageOffset,
+        offscreenLimit = initialOffscreenLimit,
+        infiniteLoop = infiniteLoop
+    )
 }
 
 @Composable
-fun PageIndicator(
-    size: Int, currentPage: Int
-) {
+fun PagerIndicator(size: Int, currentPage: Int) {
     Row(
+
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.padding(top = 60.dp)
     ) {
-        Indicators(isSelected = it == currentPage)
+        repeat(size) {
+            Indicator(isSelected = it == currentPage)
+        }
     }
 }
 
 @Composable
-fun Indicators(isSelected: Boolean) {
+fun Indicator(isSelected: Boolean) {
     val width = animateDpAsState(targetValue = if (isSelected) 25.dp else 10.dp)
 
     Box(
@@ -157,55 +157,46 @@ fun Indicators(isSelected: Boolean) {
             .height(10.dp)
             .width(width.value)
             .clip(CircleShape)
-            .background(if (isSelected) Color.Black else Color.Red)
+            .background(
+                if (isSelected) MaterialTheme.colors.primary else Purple200.copy(alpha = 0.5f)
+            )
     )
-
 }
 
 @Composable
-fun BottomSection(currentPager: Int): Unit {
-
+fun BottomSection(currentPager: Int) {
     Row(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 20.dp), horizontalArrangement = if (
-            currentPager != 2
-        ) Arrangement.SpaceBetween else Arrangement.Center
-
+            .padding(bottom = 20.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = if (currentPager != 2) Arrangement.SpaceBetween else Arrangement.Center
     ) {
-        Skip()
-        Skip()
+
+        if (currentPager == 2) {
+            OutlinedButton(
+                onClick = { },
+                shape = RoundedCornerShape(50), // = 40% percent
+            ) {
+                Text(
+                    text = "Get Started",
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 40.dp),
+                    color = Color.White
+                )
+            }
+        } else {
+            SkipNextButton("Skip", Modifier.padding(start = 20.dp))
+            SkipNextButton("Next", Modifier.padding(end = 20.dp))
+        }
+
     }
 }
 
-
-@Preview
 @Composable
-fun Skip() {
-    // Icon Button
-    // Icon on the Right of text
-    Button(
-        shape = RoundedCornerShape(12.dp),
-        onClick = {},
-        modifier = Modifier
-            .padding(1.dp)
-            .size(120.dp, 50.dp),
+fun SkipNextButton(text: String, modifier: Modifier) {
+    Text(
+        text = text, color = Purple200, modifier = modifier, fontSize = 18.sp,
+        style = Typography.body1,
+        fontWeight = FontWeight.Medium
+    )
 
-        colors = ButtonDefaults.buttonColors(
-            backgroundColor = colorResource(id = R.color.oneblood),
-            contentColor = Color.White
-        )
-    ) {
-        Text(
-            text = "Skip",
-            color = Color.White,
-            fontSize = 15.sp,
-            fontWeight = FontWeight.Light
-        )
-        Icon(
-            imageVector = Icons.Default.ArrowForward,
-            contentDescription = null,
-            modifier = Modifier.padding(start = 4.dp)
-        )
-    }
 }
