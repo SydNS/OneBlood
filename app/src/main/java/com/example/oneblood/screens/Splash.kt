@@ -38,7 +38,7 @@ fun Splash(navController: NavController){
             }
         ))
         delay(1000L)
-        navController.navigate("Login")
+        navController.navigate("onboarding")
     }
     Box(modifier = Modifier
         .fillMaxSize()
