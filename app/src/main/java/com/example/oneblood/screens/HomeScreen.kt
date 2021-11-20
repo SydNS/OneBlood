@@ -68,8 +68,10 @@ fun Topsection(): Unit {
 
         ) {
 
-        Column(modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.SpaceEvenly) {
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            verticalArrangement = Arrangement.SpaceEvenly
+        ) {
             Topsecetiontext()
             TopsectionRow()
 
@@ -114,7 +116,7 @@ fun Topsecetiontext(): Unit {
         //add text with your different color/style
         withStyle(
             style = SpanStyle(
-                color =oneblod ,
+                color = oneblod,
                 background = Color.White,
                 fontFamily = cavdreams,
                 fontSize = 43.sp,
@@ -130,7 +132,7 @@ fun Topsecetiontext(): Unit {
     Text(
         text = annotatedText,
         color = Color.White,
-        modifier = Modifier.padding(start = 20.dp,end = 20.dp, bottom = 1.dp,top = 30.dp),
+        modifier = Modifier.padding(start = 20.dp, end = 20.dp, bottom = 1.dp, top = 30.dp),
         fontFamily = cavdreams,
         style = Typography.h5,
         softWrap = true
@@ -159,9 +161,17 @@ fun TopsectionRow(): Unit {
 @Preview
 @Composable
 fun Topstats(): Unit {
-    
-    Column(modifier = ) {
-        
+
+    Column(
+        modifier = Modifier.wrapContentSize()
+    ) {
+        Row(modifier = Modifier
+            .width(100.dp)
+            .height(90.dp)) {
+
+
+        }
+
     }
-    
+
 }
