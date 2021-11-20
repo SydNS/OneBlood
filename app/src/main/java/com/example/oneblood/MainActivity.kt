@@ -24,12 +24,17 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.oneblood.dataclasses.OnBoardingData
 import com.example.oneblood.scre.Splash
 import com.example.oneblood.screens.LoginScreen
+import com.example.oneblood.screens.OnBoardingScreen
 import com.example.oneblood.screens.SignupScreen
+import com.example.oneblood.screens.rememberPagerState
 import com.example.oneblood.ui.theme.OneBloodTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 class MainActivity : ComponentActivity() {
+    @ExperimentalPagerApi
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,12 +62,15 @@ fun DefaultPreview() {
     }
 }
 
+@ExperimentalPagerApi
 @ExperimentalAnimationApi
 @Composable
 fun Navigation() {
 
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "splash") {
+
+        composable("onboarding") { OnBoardingScreen(navController) }
         composable("splash") { Splash(navController) }
         composable("Login") { LoginScreen(navController) }
         composable("Register") { SignupScreen(navController) }
